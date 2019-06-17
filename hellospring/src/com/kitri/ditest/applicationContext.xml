@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	
+	<!-- # 객체 생성 방법 (DI) # -->
+	<!-- 1) 사용자 정의 생성자 지정 방법 -->
+	<!-- ① element 이용   -->
+	<bean id="m1" class="com.kitri.ditest.MemberDto"> 			<!-- MemberDto m1 = new MemberDto();와 같은 의미! -->
+		<constructor-arg index="1">
+			<value>홍길동</value>
+		</constructor-arg>
+		<constructor-arg index="0">
+			<value>hong</value>
+		</constructor-arg>
+	</bean>
+	
+	<!-- ② 속성 이용   -->
+	<bean id="m2" class="com.kitri.ditest.MemberDto">
+		<constructor-arg value="홍길동"/>							<!-- value의 default가 String -->
+		<constructor-arg value="25" type="int"/> 				<!-- *type : value 타입 명시 -->
+	</bean>
+	
+	<bean id="m3" class="com.kitri.ditest.MemberDto">
+		<constructor-arg value="홍길동"/>
+		<constructor-arg value="1000000" type="double"/>
+	</bean>
+	
+	<bean id="m4" class="com.kitri.ditest.MemberDto">
+		<constructor-arg value="홍길동" index="1"/>				<!-- *index : value 순서 명시 -->
+		<constructor-arg value="hong"/>
+		<constructor-arg value="25" type="int"/>
+		<constructor-arg value="1000000" type="double"/>
+	</bean>
+	
+	<bean id="m5" class="com.kitri.ditest.MemberDto">
+		<constructor-arg value="홍길동" index="1"/>
+		<constructor-arg value="hong" name="id"/>				<!-- *name : value 이름 명시 -->
+		<constructor-arg value="25" type="int"/>
+		<constructor-arg value="1000000" type="double"/>
+		<constructor-arg ref="address1"/>
+	</bean>
+	
+	<bean id="address1" class="com.kitri.ditest.AddressDto">
+		<constructor-arg value="23456"/>
+		<constructor-arg value="서울시 구로구 구로디지털로 34길 코오롱싸이언스벨리 1차"/>
+		<constructor-arg value="4층 한국정보기술연구원 4강의장"/>
+	</bean>
+
+	<!-- 2) setter 이용 -->
+	<bean id="m6" class="com.kitri.ditest.MemberDto">
+		<property name="id" value="hong"></property>
+		<property name="name" value="홍길동"></property>
+		<property name="age" value="25"></property>
+		<property name="money" value="100000"></property>
+		<property name="addressDto" ref="address2"></property>
+	</bean>	
+
+	<bean id="address2" class="com.kitri.ditest.AddressDto">
+		<constructor-arg value="78945"/>
+		<constructor-arg value="서울시 구로구 구로디지털로 34길 코오롱싸이언스벨리 2차"/>
+		<constructor-arg value="5층 한국정보기술연구원"/>
+	</bean>
+
+	<!-- 3) namespace 이용 -->
+	<!-- *Namespaces 탭에서 'p'에 체크해야 함! -->
+	<bean id="m7" class="com.kitri.ditest.MemberDto"
+		p:id="java"
+		p:name="이순신"
+		p:age="25"
+		p:money="23412345"
+		p:addressDto-ref="address3"
+	/>
+
+	<bean id="address3" class="com.kitri.ditest.AddressDto"
+		p:zipcode="12346"
+		p:address="주소주소주소"
+		p:addressDetail="상세주소상세주소"
+	/>
+
+</beans>
