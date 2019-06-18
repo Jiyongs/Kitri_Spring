@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.kitri.member.model.dao.MemberDao"> <!-- 권장사항 : 패키지 포함 interface명 사용 -->
+  
+  	<select id="idCheck" parameterType="string" resultType="int"> <!-- 권장사항 : 메소드 이름 -->
+  		select count(id)
+		from member 
+		where id = #{id}
+  	</select>
+  	
+  	<select id="zipSearch" parameterType="string" resultType="zipcodedto"> <!-- Configuration.xml에 타입의 별칭이 정의되어 있음 -->
+  		select 	case
+			when length(new_post_code) = 4 then '0'||new_post_code 
+			else new_post_code 
+		end zipcode,  
+		sido_kor sido, gugun_kor gugun,  
+		nvl(upmyon_kor, ' ') upmyun, doro_kor doro,  
+		case 
+			when building_refer_number != '0' 
+			then building_origin_number||'-'||building_refer_number  
+			else trim(to_char(building_origin_number, '99999')) 
+		end buildingNumber, sigugun_building_name sigugunBuildingName 
+		from postcode 
+		where doro_kor like '%'||#{doro}||'%' 
+		or sigugun_building_name like '%'||#{doro}||'%'
+  	</select>
+  	
+  	<insert id="registerMember" parameterType="memberdetaildto">
+  		insert all
+		into member (id, name, pass, emailid, emaildomain, joindate)
+		values (#{id}, #{name}, #{pass}, #{emailId}, #{emailDomain}, sysdate)
+		into member_detail (id, zipcode, address, address_detail, tel1, tel2, tel3)
+		values (#{id}, #{zipcode}, #{address}, #{addressDetail}, #{tel1}, #{tel2}, #{tel3})
+		select * from dual
+  	</insert>
+  
+  	<select id="loginMember" parameterType="map" resultType="memberdto"> <!-- MyBatis는 Map타입이 map이라는 별칭으로 정의되어 있음 -->
+  		select name, id, emailid, emaildomain, joindate 
+		from member 
+		where id = #{userid} and pass = #{userpwd} <!-- map인 경우, map에 넣어준 key값 이용 -->
+  	</select>
+  
+  	<delete id="deleteMember" parameterType="string">
+  		{call 
+     		declare 
+     			begin 
+  					delete
+					from member_detail
+					where id = #{id};
+					delete
+					from member
+					where id = #{id};
+				end
+		}
+  	</delete>
+  	
+  	<select id="getMember" parameterType="string" resultType="memberdetaildto">
+  		select *
+		from member_detail
+		where id = #{id}
+  	</select>
+  
+  </mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="com.kitri.admin.model.dao.AdminDao">
+  
+  	<select id="getMemberList" parameterType="map" resultType="memberdetaildto">
+  		select m.name, m.id, m.emailid, m.emaildomain, m.joindate,
+		d.tel1, d.tel2, d.tel3, d.zipcode, d.address, d.address_detail
+		from member m, member_detail d
+		where m.id = d.id
+			<if test="word != null and word != ''"> 	<!-- map의 키값을 바로 써줄 수 있음! &&는 'and'로 표현 -->
+				<if test="key == 'id'">
+					and m.id = #{word}
+				</if>
+				<if test="key != 'id'">
+					and d.${key} like '%'||#{word}||'%' <!-- ${} : statement방식 / #{} : preparedstatement방식 -->
+				</if>
+			</if>
+  	</select>
+  
+  </mapper>
