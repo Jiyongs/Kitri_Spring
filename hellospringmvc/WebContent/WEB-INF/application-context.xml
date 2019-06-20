@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- ① 비웹 관련 클래스 객체 생성 -->
+	<bean id="hd" class="com.kitri.hello.model.dao.HelloDaoImpl" init-method="makeCalendar"></bean> <!-- init-method : 객체 생성 시, 호출되는 메소드 지정 가능 -->
+	
+	<bean id="hs" class="com.kitri.hello.model.service.HelloServiceImpl">
+		<property name="helloDao" ref="hd"></property>
+	</bean>
+
+</beans>

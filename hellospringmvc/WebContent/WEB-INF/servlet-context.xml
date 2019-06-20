@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- ② 웹 관련 클래스 객체 생성 -->
+	<bean class="com.kitri.hello.controller.HelloController">
+		<property name="helloService" ref="hs"></property>
+	</bean>
+
+	<!-- ① path 파일의 접두어, 접미어 정하기 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/hello/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+</beans>

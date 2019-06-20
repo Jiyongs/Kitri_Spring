@@ -1,0 +1,84 @@
+- MVC 패턴
+ 	- 싱글톤 패턴?
+
+membermvc(프로젝트 이름)
+	src
+		- com.kitri.admin.controller
+			AdminController.java (Servlet : /admin)
+		
+		- com.kitri.admin.model
+
+		- com.kitri.admin.model.dao
+			AdminDao.java (I)
+			AdminDaoImpl.java
+
+		- com.kitri.admin.model.service
+			AdminService.java (I)
+			AdminServiceImpl.java
+				
+		- com.kitri.member.controller
+			MemberController.java (Servlet : /user)
+		
+		- com.kitri.member.model
+			MemberDto.java
+			MemberDetailDto.java
+			ZipcodeDto.java
+
+		- com.kitri.member.model.dao
+			MemberDao.java (I)
+			MemberDaoImpl.java
+
+		- com.kitri.member.model.service
+			MemberService.java (I)
+			MemberServiceImpl.java
+
+		- com.kitri.util
+			DBConnection.java
+			DBClose.java
+			Encoder.java
+		
+	webContent
+		- js - member.js
+		- css - *.css
+		- img - *.jpg, png, gif
+		
+		- admin
+			- member
+				memberlist.jsp
+			
+		- user
+			- member
+				member.jsp
+				registerok.jsp
+				registerfail.jsp
+				idcheck.jsp
+				zipsearch.jsp
+				membermodify.jsp
+				
+			- login
+				login.jsp
+				loginok.jsp
+				loginfail.jsp
+				
+		index.jsp
+		
+* HttpSession & Cookie
+Cookie		: client 컴퓨터에 txt형태로 저장됨	>> String 저장
+				-> 일반인도 조회 가능 / 보안 취약
+				
+				* ex)
+				-> 팝업광고 - 오늘은 그만 볼래요
+				-> 쇼핑몰 - 오늘 클릭한 상품
+
+HttpSession	: server의 memory에 저장됨			>> Object 저장
+				-> 서버 관리자만 조회 가능
+
+
+오늘 본 상품 			: cookie
+
+찜한 상품 (wishlist)	: 상품 목록만 저장(session)
+
+장바구니				: 상세 정보까지 저장(session) / 로그아웃해도 안 날아감 (db)
+
+* wishlist - cookie & 장바구니 - session
+* wishlist - session & 장바구니 - cookie
