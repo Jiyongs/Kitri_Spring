@@ -1,0 +1,78 @@
+cafe
+	- [src]
+		- com.kitri.cafe.admin.board.controller
+			BoardAdminController.java
+		
+		- com.kitri.cafe.admin.board.dao
+			BoardAdminDao.java (I)				=> Dao는 Interface만 만들어도 됨 (MyBatis사용하기 때문!)
+			
+		- com.kitri.cafe.admin.board.model
+			BoardListDto.java
+			BoardTypeDto.java
+			CategoryDto.java
+
+		- com.kitri.cafe.admin.board.service
+			BoardAdminService.java (I)
+			BoardAdminServiceImpl.java
+		
+		- com.kitri.cafe.board.controller
+			AlbumController.java	::: 사진
+			BbsController.java		::: 자료실
+			BoardController.java	::: 게시판
+			MemoController.java		::: 메모글
+			ReboardController.java	::: 답글
+		
+		- com.kitri.cafe.board.dao
+			AlbumDao.java (I)
+			BbsDao.java (I)
+			BoardDao.java (I)
+			MemoDao.java (I)
+			ReboardDao.java (I)
+		
+		- com.kitri.cafe.board.model
+			AlbumDto.java
+			BbsDto.java
+			BoardDto.java
+			MemoDto.java
+			ReboardDto.java
+		
+		- com.kitri.cafe.service
+			AlbumService.java (I)
+			AlbumServiceImpl.java
+			BbsService.java (I)
+			BbsServiceImpl.java
+			BoardService.java (I)
+			BoardServiceImpl.java
+			MemoService.java (I)
+			MemoServiceImpl.java
+			ReboardService.java (I)
+			ReboardServiceImpl.java
+		
+		- com.kitri.cafe.common.dao			=> common : 공통적으로 사용할 것들
+			CommonDao.java (I)
+		
+		- com.kitri.cafe.common.service
+			CommonService.java (I)
+			CommonServiceImpl.java
+		
+		- com.kitri.cafe.member.model
+			MemberDto.java			::: session에 넣고 사용할 회원 정보
+			
+		- com.kitri.cafe.util
+			CafeConstance.java		::: 카페에서 사용할 상수 (페이지 목록 수 등)
+			PageNavigation.java
+			
+			...
+			
+	
+	- webapp
+		index.jsp
+		
+		- resources
+			- css, js, img ...
+			
+		- META-INF
+			- context.xml		=> connection pool 설정.
+			
+		- WEB-INF
+			- views : jsp

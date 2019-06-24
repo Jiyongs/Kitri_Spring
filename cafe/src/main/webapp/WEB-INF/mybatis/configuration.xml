@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  
+  <!-- 패키지에 alias 추가 -->
+  	<typeAliases>
+  		<typeAlias alias="categoryDto" type="com.kitri.cafe.admin.board.model.CategoryDto"/>
+  		<typeAlias alias="boardTypeDto" type="com.kitri.cafe.admin.board.model.BoardTypeDto"/>
+  		<typeAlias alias="boardListDto" type="com.kitri.cafe.admin.board.model.BoardListDto"/>
+  		<typeAlias alias="boardDto" type="com.kitri.cafe.board.model.BoardDto"/>
+  		<typeAlias alias="albumDto" type="com.kitri.cafe.board.model.AlbumDto"/>
+  		<typeAlias alias="bbsDto" type="com.kitri.cafe.board.model.BbsDto"/>
+  		<typeAlias alias="memoDto" type="com.kitri.cafe.board.model.MemoDto"/>
+  		<typeAlias alias="reboardDto" type="com.kitri.cafe.board.model.ReboardDto"/>
+  	</typeAliases>
+  
+  
+  
+  </configuration>
