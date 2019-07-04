@@ -48,7 +48,7 @@
   	<select id="loginMember" parameterType="map" resultType="memberdto"> <!-- MyBatis는 Map타입이 map이라는 별칭으로 정의되어 있음 -->
   		select name, id, emailid, emaildomain, joindate 
 		from member 
-		where id = #{userid} and pass = #{userpwd} <!-- map인 경우, map에 넣어준 key값 이용 -->
+		where id = #{id} and pass = #{pass} <!-- Map에 집어넣은 form의 name값과 같음 -->
   	</select>
   
   	<delete id="deleteMember" parameterType="string">

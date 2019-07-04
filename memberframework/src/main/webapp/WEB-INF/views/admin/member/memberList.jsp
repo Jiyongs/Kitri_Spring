@@ -25,25 +25,25 @@
 	 $("#mlist").empty();
 	 
 	 $.ajax({
-			url:"${root}/admin",
+			url:"${root}/admin/memberlist.kitri",
 			type:"get",	
-			dataType:"xml",
-			data: "act=getmemberlist&key=" + key + "&word=" + word,  //#key : document.getElementId / .key : document.getElementClass
+			dataType:"json",
+			data: {"key" : key, "word" : word},  //#key : document.getElementId / .key : document.getElementClass
 			timeout : 30000,
 			cache:false,
-			success:function(xml){	// 성공  (AdminController에게 XML을 정상적으로 받았을 경우!)
+			success:function(json){	// 성공  (AdminController에게 XML을 정상적으로 받았을 경우!)
 				
+				var list = json.memberlist;
+				var len = list.length;
+								
+				for(var i = 0; i < len; i++) {
 				
-				var member = $(xml).find("member"); // member에는 배열이 들어감!
-				
-				for(var i = 0; i < member.length; i++) {
-				
-					var id = $(member[i]).find("id").text();
-					var name = $(member[i]).find("name").text();
-					var email = $(member[i]).find("email").text();
-					var tel = $(member[i]).find("tel").text();
-					var address = $(member[i]).find("address").text();
-					var joindate = $(member[i]).find("joindate").text();
+					var id = list[i].id;
+					var name = list[i].name;
+					var email = list[i].emailId + "@" + list[i].emailDomain;
+					var tel = list[i].tel1 + " - " + list[i].tel2 + " - " + list[i].tel3;
+					var address = list[i].zipcode + " " + list[i].address;
+					var joindate = list[i].joindate;
 					
 					// **jquery 특징 - 체이닝**
 					// : $("<td>").html(title). ... .으로 연결해서 계속 사용 가능
@@ -98,4 +98,4 @@
   </table>
 </div>
 
-<%@ include file = "/WEB-INF/views//template/footer.jsp" %>
+<%@ include file = "/WEB-INF/views/template/footer.jsp" %>

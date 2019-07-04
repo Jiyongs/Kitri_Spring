@@ -16,7 +16,7 @@ $(function() {
 				var view = "";
 				
 				for(var i = 0; i < len; i++){
-					var address = list[i].sido + " " + list[i].gugun + " " + list[i].upmyun + " " + list[i].doro + " " + list[i].buildingNumber + " " + list[i].sigugunBuildingNumber;
+					var address = list[i].sido + " " + list[i].gugun + " " + list[i].upmyun + " " + list[i].doro + " " + list[i].buildingNumber + " " + list[i].sigugunBuildingName;
 					view += "<tr>\n";
 					view += "	<td>" + list[i].zipcode + "</td>\n";
 					view += '	<td align="left">';

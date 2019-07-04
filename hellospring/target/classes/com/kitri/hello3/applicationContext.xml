@@ -3,6 +3,25 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
-	<bean id="hs" class="com.kitri.hello3.HelloServiceKor" />
+	<bean id="hd" class="com.kitri.hello3.HelloDao" />
+
+<!-- 2. 생성자 (DI) -->
+	<bean id="hs" class="com.kitri.hello3.HelloServiceKor">
+		<constructor-arg ref="hd"/>
+	</bean>
+
+<!-- 1. setter (DI) -->
+<!-- 
+	<bean id="hs" class="com.kitri.hello3.HelloServiceKor">
+		<property name="helloDao" ref="hd"></property>
+	</bean>
+
+ -->
+ 	<bean id="eng" class="com.kitri.hello3.HelloServiceEng" />
+
+
+<!-- prototype : 매번 새 객체 생성 -->
+<!--	<bean id="hs" class="com.kitri.hello3.HelloServiceKor" scope="prototype"/> -->
+	
 
 </beans>

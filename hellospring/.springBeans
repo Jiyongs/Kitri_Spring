@@ -8,6 +8,7 @@
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
 		<config>src/com/kitri/hello3/applicationContext.xml</config>
+		<config>src/com/kitri/ditest/applicationContext.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

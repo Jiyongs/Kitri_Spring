@@ -21,6 +21,16 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- Exception 처리  -->
+	<beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<beans:property name="exceptionMappings">
+			<beans:props>
+			<!-- 로그인 안 한 사용자의 로그아웃 비정상 접근 시 예외 처리 : 로그인 페이지(login : view 이름)로 이동 -->
+				<beans:prop key="org.springframework.web.HttpSessionRequiredException">user/login/login</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+	
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">

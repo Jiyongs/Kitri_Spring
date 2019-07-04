@@ -1,5 +1,7 @@
 package com.kitri.member.model.service;
 
+import java.util.Map;
+
 import com.kitri.member.model.MemberDetailDto;
 import com.kitri.member.model.MemberDto;
 
@@ -8,7 +10,7 @@ public interface MemberService {
 	String idCheck(String id);
 	String zipSearch(String doro);
 	int registerMember(MemberDetailDto memberDetailDto);
-	MemberDto loginMember(String id, String pass);
+	MemberDto loginMember(Map<String, String> map);
 	
 	//혼자 해보기!!
 	MemberDetailDto getMember(String id);  // 회원 1명 정보 얻어오기 (정보 수정 화면에 뿌릴 것들)
